@@ -66,3 +66,7 @@
   - submit data it creates
   - respond to game state notifications (sent from server) by showing a different page/interface
 -
+
+## misc ideas
+
+- dynamically include player names in some prompts (in addition to static list). e.g. "Max barfing"

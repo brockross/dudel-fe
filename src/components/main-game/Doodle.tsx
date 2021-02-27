@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sketchpad from "../sketchpad";
+import Sketchpad from "../../sketchpad";
 
 export interface DoodleProps {
   prompt: string;
@@ -10,7 +10,7 @@ export const Doodle: React.FC<DoodleProps> = ({ prompt }): JSX.Element => {
 
   useEffect(() => {
     const sketchpad = new Sketchpad({
-      element: "#testy",
+      element: "#sketch-canvas",
       width: 400,
       height: 400,
     });
@@ -25,15 +25,18 @@ export const Doodle: React.FC<DoodleProps> = ({ prompt }): JSX.Element => {
   };
   const handleSubmit = () => {
     // TODO: socketry
-    const sketchData = sketchpad.toObject();
-    console.log(sketchData);
+    // const sketchData = sketchpad.toJSON();
+    console.log(sketchpad.toObject());
   };
 
   return (
     <div>
       <h4>your doodle prompt is...</h4>
       <h2>{prompt}</h2>
-      <canvas id={"testy"} style={{ border: "2px solid teal" }}></canvas>
+      <canvas
+        id={"sketch-canvas"}
+        style={{ border: "2px solid teal" }}
+      ></canvas>
       <button onClick={handleUndo}>undo</button>
       <button onClick={handleRedo}>redo</button>
       <button onClick={handleSubmit}>submit!</button>
