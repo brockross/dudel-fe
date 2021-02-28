@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Sketchpad from "src/sketchpad";
 
-import Sketchpad from "../../sketchpad";
+import { SubmitButton } from "src/components/shared/SubmitButton";
+
 // importing sample json here instead of in story because storybook apparently gets bogged down with beeeg json
-import sampleSketch from "../../sample-sketch.json";
+import sampleSketch from "src/sample-sketch.json";
 
 export interface GuessProps {
   sketchJSON: string;
@@ -12,11 +14,12 @@ export const Guess: React.FC<GuessProps> = ({ sketchJSON }) => {
   const [guess, setGuess] = useState("");
 
   useEffect(() => {
-    new Sketchpad({
+    const sketchpad = new Sketchpad({
       element: "#readonly-sketch",
       readOnly: true,
       ...JSON.parse(sketchJSON || JSON.stringify(sampleSketch)),
     });
+    sketchpad.animate(2);
   }, []);
 
   const handleGuessText = (e: React.SyntheticEvent) => {
@@ -32,7 +35,7 @@ export const Guess: React.FC<GuessProps> = ({ sketchJSON }) => {
       <canvas id={"readonly-sketch"} />
       <label htmlFor="guess">What is this? </label>
       <input type="text" name="guess" onChange={handleGuessText} />
-      <button onClick={handleSubmit}>submit</button>
+      <SubmitButton handleSubmit={handleSubmit}>submit</SubmitButton>
     </div>
   );
 };

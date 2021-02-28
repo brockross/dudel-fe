@@ -14,26 +14,20 @@
 - separate backend app just for websocket connections (i.e. does not handle serving the FE app itself)
 - set up as monorepo?
 
-## steps
-
-- ~~set up as monorepo w/yarn workspaces~~
-- set up FE env:
-  - nextjs
-  - typescript
-  - storybook
-- set up BE env:
-  - express
-  - websockets
-  - typescript?
-
 ## todos
 
 - ~~experiment with storybook~~
 - ~~experiment with TS~~
-- read TS handbook
-- define components needed for each page I've plotted out
-- review usage of Sketchpad API in old app--will inform how I set things up here
-- start making components, passing in mock doodle JSON as story
+- ~~read TS handbook~~
+- ~~define components needed for each page I've plotted out~~
+- ~~review usage of Sketchpad API in old app--will inform how I set things up here~~
+- ~~start making components, passing in mock doodle JSON as story~~
+- decide on a rough aesthetic--color palette, fonts, quote unquote "vibe"
+- keep making components from list
+- ~~start on server~~
+- start setting up actual Next app
+- init socket in Context and provide at root
+-
 
 ## pages and their components
 
@@ -49,14 +43,19 @@
   - static prompt text header
   - interactive sketchpad
   - timer (?)
-  - "submit" button
+  - ~~"submit" button~~
 - Main Game in Prompt State
   - static sketchpad
   - text field for guess
   - timer (?)
-  - "submit" button
+  - ~~"submit" button~~
   - slideshow of book prompts/doodles/guesses (rendered on interval?)
   - "play again" button
+- Persistent Sidebar/HUD Stuff
+  - player list w/"has submitted" status for the round
+  - current round out of total rounds (e.g. "Round 3/5")
+  - header with game name
+  - footer info?
 - Error
 
 ## game logic
@@ -70,3 +69,12 @@
 ## misc ideas
 
 - dynamically include player names in some prompts (in addition to static list). e.g. "Max barfing"
+
+## design brainstorm
+
+- 8bit?
+- pnw native colors (teal, terra cotta, sand, etc)
+- match my keyboard (kinda mexican/aztec color palette)
+- feel like I want it to be colorful but not garish
+- ... circles? just defy the quadrilateral supremacy that runs rampant across most of cyberspace?
+  - this could be kinda cool to experiment with

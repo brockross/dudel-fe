@@ -5,8 +5,11 @@ export interface SubmitButtonProps {
   handleSubmit: Function;
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({ handleSubmit }) => {
-  return <Button onClick={handleSubmit}>Submit</Button>;
+export const SubmitButton: React.FC<SubmitButtonProps> = ({
+  handleSubmit,
+  children,
+}) => {
+  return <Button onClick={handleSubmit}>{children || "submit"}</Button>;
 };
 
 const Button = styled.div`
@@ -17,4 +20,5 @@ const Button = styled.div`
   color: white;
   padding: 0.5em;
   border-radius: 5px;
+  cursor: pointer;
 `;
