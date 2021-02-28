@@ -12,7 +12,7 @@ export const Guess: React.FC<GuessProps> = ({ sketchJSON }) => {
   const [guess, setGuess] = useState("");
 
   useEffect(() => {
-    const sketchpad = new Sketchpad({
+    new Sketchpad({
       element: "#readonly-sketch",
       readOnly: true,
       ...JSON.parse(sketchJSON || JSON.stringify(sampleSketch)),
