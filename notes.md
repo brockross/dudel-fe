@@ -26,8 +26,9 @@
 - keep making components from list
 - ~~start on server~~
 - start setting up actual Next app
-- init socket in Context and provide at root
--
+- ~~init socket in Context and provide at root~~
+- ~~figure out basic room creation/joining logic~~
+- build "Game Setup" lobby page; route to it after join/create
 
 ## pages and their components
 
@@ -64,7 +65,7 @@
   - render the data it's given
   - submit data it creates
   - respond to game state notifications (sent from server) by showing a different page/interface
--
+- finding that trying to organize/extract separate functions on server is causing a lot of annoying roadblocks re: socket server architecture--for now, I'm going to just be okay with having everything in the one .on("connect") listener, and then I can modularize it later.
 
 ## misc ideas
 

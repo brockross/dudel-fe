@@ -4,20 +4,47 @@ import styled from "styled-components";
 import { SubmitButton } from "src/components/shared/SubmitButton";
 import { SocketContext } from "src/context/socket";
 
+import { useRouter } from "next/router";
+
 export const JoinOrStart: React.FC = () => {
-  const socket = useContext(SocketContext);
+  const socket: SocketIOClient.Socket = useContext(SocketContext);
+  const [gameCode, setGameCode] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    socket.on("testyBoi", console.log);
+    // socket.on("info", console.log);
   }, []);
+
+  const handleGameCodeText = (e: React.SyntheticEvent) => {
+    setGameCode((e.target as HTMLInputElement).value);
+  };
+  const handleJoin = () => {
+    socket.emit("join-game", { gameCode });
+    socket.on("join-game-success", (msg: string) => {
+      router.push("/game-setup");
+    });
+  };
+  const handleStartNew = () => {
+    socket.emit("create-game", {}); // TODO: could do these in ack/cb fashion instead
+    socket.on("create-game-success", (msg: string) => {
+      router.push("/game-setup");
+    });
+  };
 
   return (
     <Wrapper>
       <label htmlFor="gameId">Join existing game </label>
-      <input type="text" name="gameId" placeholder="Enter game code" />
-      <SubmitButton>Join</SubmitButton>
+      <input
+        type="text"
+        name="gameId"
+        placeholder="Enter game code"
+        onChange={handleGameCodeText}
+      />
+      <SubmitButton handleSubmit={handleJoin}>Join</SubmitButton>
       OR
-      <SubmitButton>Start a new game</SubmitButton>
+      <SubmitButton handleSubmit={handleStartNew}>
+        Start a new game
+      </SubmitButton>
     </Wrapper>
   );
 };
