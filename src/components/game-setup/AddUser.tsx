@@ -7,11 +7,7 @@ export const AddUser: React.FC = () => {
   const socket: SocketIOClient.Socket = useContext(SocketContext);
   const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    socket.on("user-added", ({ username }) => {
-      console.log(`${username} is ready to play!`);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   const handleUsernameText = (e: React.SyntheticEvent) => {
     setUsername((e.target as HTMLInputElement).value);

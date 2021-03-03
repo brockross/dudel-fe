@@ -11,9 +11,7 @@ export const JoinOrStart: React.FC = () => {
   const [gameCode, setGameCode] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    // socket.on("info", console.log);
-  }, []);
+  useEffect(() => {}, []);
 
   const handleGameCodeText = (e: React.SyntheticEvent) => {
     setGameCode((e.target as HTMLInputElement).value);

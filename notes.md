@@ -23,12 +23,14 @@
 - ~~review usage of Sketchpad API in old app--will inform how I set things up here~~
 - ~~start making components, passing in mock doodle JSON as story~~
 - decide on a rough aesthetic--color palette, fonts, quote unquote "vibe"
-- keep making components from list
+- ~~keep making components from list~~
 - ~~start on server~~
-- start setting up actual Next app
+- ~~start setting up actual Next app~~
 - ~~init socket in Context and provide at root~~
-- ~~figure out basic room creation/joining logic~~
-- build "Game Setup" lobby page; route to it after join/create
+- ~~figure out basic room creation/joining logic~~ _holy shit this was a mind-boggling odyssey_
+- ~~build "Game Setup" lobby page; route to it after join/create~~
+- at some point, figure out how to use context api with storybook (any components that use socket from context currently don't work in sb)
+- build out the rest of the lobby (live user list; "everyone's ready" button). As part of process, decide on a convention for managing reactive client/server events, which will be used throughout the rest of the app. i.e., callbacks, imperative events going both ways, promisifying, something else?
 
 ## pages and their components
 
@@ -37,7 +39,7 @@
   - button for "start new game"
   - text field + button for "join existing game"
 - Game Setup (username setup + lobby)
-  - "add name" field + button
+  - ~~"add name" field + button~~
   - live list of users currently in lobby
   - "everyone's ready" button to start game
 - Main Game in Doodle State
@@ -65,7 +67,7 @@
   - render the data it's given
   - submit data it creates
   - respond to game state notifications (sent from server) by showing a different page/interface
-- finding that trying to organize/extract separate functions on server is causing a lot of annoying roadblocks re: socket server architecture--for now, I'm going to just be okay with having everything in the one .on("connect") listener, and then I can modularize it later.
+- ~~finding that trying to organize/extract separate functions on server is causing a lot of annoying roadblocks re: socket server architecture--for now, I'm going to just be okay with having everything in the one .on("connect") listener, and then I can modularize it later.~~ _handled this ish_
 
 ## misc ideas
 
@@ -79,3 +81,4 @@
 - feel like I want it to be colorful but not garish
 - ... circles? just defy the quadrilateral supremacy that runs rampant across most of cyberspace?
   - this could be kinda cool to experiment with
+- use my own doodles for game art/theming?
