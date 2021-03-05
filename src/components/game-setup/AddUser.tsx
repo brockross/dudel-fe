@@ -3,19 +3,16 @@ import React, { useState, useEffect, useContext } from "react";
 import { SubmitButton } from "src/components/shared/SubmitButton";
 import { SocketContext } from "src/context/socket";
 
-export const AddUser: React.FC = () => {
+export interface AddUserProps {
+  handleUsernameText: Function;
+  handleAddUser: Function;
+}
+
+export const AddUser: React.FC<AddUserProps> = ({
+  handleUsernameText,
+  handleAddUser,
+}) => {
   const socket: SocketIOClient.Socket = useContext(SocketContext);
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {}, []);
-
-  const handleUsernameText = (e: React.SyntheticEvent) => {
-    setUsername((e.target as HTMLInputElement).value);
-  };
-
-  const handleAddUser = () => {
-    socket.emit("add-user", { username });
-  };
 
   return (
     <div>

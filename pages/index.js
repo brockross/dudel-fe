@@ -1,11 +1,22 @@
-import { JoinOrStart } from "src/components/pre-game/JoinOrStart";
-import { SocketContext, socket } from "src/context/socket";
+import styled from "styled-components";
+import Link from "next/link";
+
+import { ContentWrapper } from "src/components/shared/shared-styled";
 
 export default function App() {
   return (
-    <div>
-      <h2>PRE-GAME</h2>
-      <JoinOrStart />
-    </div>
+    <ContentWrapper>
+      <Link href="/pre-game">
+        <Title>dudel.</Title>
+      </Link>
+    </ContentWrapper>
   );
 }
+
+const Title = styled.p`
+  font-family: Helvetica;
+  color: teal;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+`;

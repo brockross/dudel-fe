@@ -6,29 +6,11 @@ import { SocketContext } from "src/context/socket";
 
 import { useRouter } from "next/router";
 
-export const JoinOrStart: React.FC = () => {
-  const socket: SocketIOClient.Socket = useContext(SocketContext);
-  const [gameCode, setGameCode] = useState("");
-  const router = useRouter();
-
-  useEffect(() => {}, []);
-
-  const handleGameCodeText = (e: React.SyntheticEvent) => {
-    setGameCode((e.target as HTMLInputElement).value);
-  };
-  const handleJoin = () => {
-    socket.emit("join-game", { gameCode });
-    socket.on("join-game-success", (msg: string) => {
-      router.push("/game-setup");
-    });
-  };
-  const handleStartNew = () => {
-    socket.emit("create-game", {}); // TODO: could do these in ack/cb fashion instead
-    socket.on("create-game-success", (msg: string) => {
-      router.push("/game-setup");
-    });
-  };
-
+export const JoinOrStart: React.FC = ({
+  handleGameCodeText,
+  handleJoin,
+  handleStartNew,
+}) => {
   return (
     <Wrapper>
       <label htmlFor="gameId">Join existing game </label>

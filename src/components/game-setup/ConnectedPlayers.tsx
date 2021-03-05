@@ -3,14 +3,13 @@ import styled from "styled-components";
 
 import { SocketContext } from "src/context/socket";
 
-export const ConnectedPlayers: React.FC = () => {
+export interface ConnectedPlayersProps {
+  playerList: Array<any>; // TODO type this good
+}
+export const ConnectedPlayers: React.FC<ConnectedPlayersProps> = ({
+  playerList,
+}) => {
   const socket: SocketIOClient.Socket = useContext(SocketContext);
-  const [playerList, setPlayerList] = useState([
-    { username: "placeholder", isFounder: false },
-  ]);
-  useEffect(() => {
-    socket.on("user-added", setPlayerList);
-  }, []);
 
   return (
     <Container>
