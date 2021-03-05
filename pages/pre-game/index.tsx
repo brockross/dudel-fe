@@ -20,7 +20,8 @@ export const PreGame: React.FC = () => {
 
   const handleJoin = () => {
     joinGame(socket, codeEntry)
-      .then(() => {
+      .then((gameCode) => {
+        setGameCode(gameCode);
         router.push("/game-setup");
       })
       .catch((error) => {

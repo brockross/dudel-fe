@@ -10,11 +10,14 @@ export const fetchPlayerList = (socket: SocketIOClient.Socket) => {
 };
 
 // not sure yet how much convention to adopt for other callback-based interactions--probably will figure that out as game logic develops. For now I'm just going to write ad-hoc callback-style functions when it seems to make sense (e.g., need to know A) if the game creation was successful, and B) what the game code is
-export const joinGame = (socket: SocketIOClient.Socket, gameCode: string) => {
+export const joinGame = (
+  socket: SocketIOClient.Socket,
+  gameCode: string
+): Promise<string> => {
   return new Promise((resolve, reject) => {
     socket.emit("join-game", gameCode, (response) => {
       if (response.success) {
-        resolve({ response });
+        resolve(response.gameCode);
       } else {
         reject(response.msg);
       }
@@ -27,7 +30,7 @@ export const createGame = (socket: SocketIOClient.Socket): Promise<string> => {
       if (response.success) {
         resolve(response.gameCode);
       } else {
-        reject(response.error);
+        reject(response.msg);
       }
     });
   });

@@ -33,8 +33,8 @@
 - ~~reshuffle existing stuff so main page component handles all the socket interactions and just passes data to child components~~
 - build out the rest of the lobby (live user list; "everyone's ready" button). As part of process, decide on a convention for managing reactive client/server events, which will be used throughout the rest of the app. i.e., callbacks, imperative events going both ways, promisifying, something else?
 - ~~game-setup needs to fetch player list on mount, not just when player submits their username~~ (added 'fetch' convention for any RESTy interactions like this)
-- add game code component to game-setup page so I don't have to keep pasting it from the console
-- start making _actual game_
+- ~~add game code component to game-setup page so I don't have to keep pasting it from the console~~
+- start making _the actual game_
 
 ## pages and their components
 

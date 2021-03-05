@@ -34,12 +34,12 @@ const GameSetup = () => {
   };
   return (
     <ContentWrapper>
-      <h2>GAME CODE: {gameCode}</h2>
       <AddUser
         handleUsernameText={handleUsernameText}
         handleAddUser={handleAddUser}
       />
       <ConnectedPlayers playerList={playerList} />
+      <p>game code: {gameCode}</p>
     </ContentWrapper>
   );
 };
