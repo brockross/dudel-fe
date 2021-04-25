@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import { Doodle, DoodleProps } from "./Doodle";
 
 export default {
-  title: "Main Game/Doodle",
+  title: "Play/Doodle",
   component: Doodle,
 } as Meta;
 

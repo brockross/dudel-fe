@@ -1,21 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-
-import { SocketContext } from "src/context/socket";
-
 export interface ConnectedPlayersProps {
   playerList: Array<any>; // TODO type this good
 }
 export const ConnectedPlayers: React.FC<ConnectedPlayersProps> = ({
   playerList,
 }) => {
-  const socket: SocketIOClient.Socket = useContext(SocketContext);
-
   return (
     <Container>
       {playerList.map((player) => (
         <p>
-          {player.username} | {player.isFounder ? "VIP" : "ready!"}
+          {player.username || "connected player"} {player.isFounder && `| VIP`}
         </p>
       ))}
     </Container>
@@ -24,6 +19,11 @@ export const ConnectedPlayers: React.FC<ConnectedPlayersProps> = ({
 
 const Container = styled.div`
   width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   border: 2px solid teal;
   border-radius: 7px;
+  padding: 10px;
 `;

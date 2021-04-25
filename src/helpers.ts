@@ -9,7 +9,7 @@ export const fetchPlayerList = (socket: SocketIOClient.Socket) => {
   });
 };
 
-// not sure yet how much convention to adopt for other callback-based interactions--probably will figure that out as game logic develops. For now I'm just going to write ad-hoc callback-style functions when it seems to make sense (e.g., need to know A) if the game creation was successful, and B) what the game code is
+// not sure yet how much convention to adopt for other callback-based interactions--probably will figure that out as game logic develops. For now I'm just going to write ad-hoc callback-style functions when it seems to make sense (e.g., need to know A- if the game creation was successful, and B- what the game code is)
 export const joinGame = (
   socket: SocketIOClient.Socket,
   gameCode: string

@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import { Guess, GuessProps } from "./Guess";
 
 export default {
-  title: "Main Game/Guess",
+  title: "Play/Guess",
   component: Guess,
 } as Meta;
 
