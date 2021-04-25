@@ -1,8 +1,28 @@
 // convention: "fetch"-prefixed functions mimic a RESTy interaction, where the request and response are bundled into a sort of transaction via callback. Use these in situations where the client knows what it wants and is asking for it. Use regular event emission/listening when the client needs to know information (e.g., game state updates) but doesn't necessarily know to ask for it
 
-export const fetchPlayerList = (socket: SocketIOClient.Socket) => {
+// export const fetchPlayerList = (socket: SocketIOClient.Socket) => {
+//   return new Promise((resolve, reject) => {
+//     socket.emit("fetch-player-list", (response) => {
+//       resolve(response);
+//     });
+//     // TODO: handle errors, reject
+//   });
+// };
+
+// export const fetchInitialPrompt = (socket: SocketIOClient.Socket) => {
+//   return new Promise((resolve, reject) => {
+//     socket.emit("fetch-initial-prompt", (response) => {
+//       resolve(response);
+//     });
+//   });
+// };
+
+export const socketFetch = (
+  socket: SocketIOClient.Socket,
+  eventName: string
+) => {
   return new Promise((resolve, reject) => {
-    socket.emit("fetch-player-list", (response) => {
+    socket.emit(eventName, (response) => {
       resolve(response);
     });
     // TODO: handle errors, reject

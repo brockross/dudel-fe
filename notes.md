@@ -31,7 +31,7 @@
 - ~~build "Game Setup" lobby page; route to it after join/create~~
 - at some point, figure out how to use context api with storybook (any components that use socket from context currently don't work in sb)
 - ~~reshuffle existing stuff so main page component handles all the socket interactions and just passes data to child components~~
-- build out the rest of the lobby (live user list; "everyone's ready" button). As part of process, decide on a convention for managing reactive client/server events, which will be used throughout the rest of the app. i.e., callbacks, imperative events going both ways, promisifying, something else?
+- ~~build out the rest of the lobby (live user list; "everyone's ready" button). As part of process, decide on a convention for managing reactive client/server events, which will be used throughout the rest of the app. i.e., callbacks, imperative events going both ways, promisifying, something else?~~
 - ~~game-setup needs to fetch player list on mount, not just when player submits their username~~ (added 'fetch' convention for any RESTy interactions like this)
 - ~~add game code component to game-setup page so I don't have to keep pasting it from the console~~
 - start making _the actual game_
@@ -87,3 +87,15 @@
   - this could be kinda cool to experiment with
 - use my own doodles for game art/theming?
 - dark theme?
+
+## scratchpad
+
+sample player sketchbook: [{doodle: JSON, artist: username}, {guess: string, author: username}, {doodle: JSON, artist: username}]
+
+- guess/prompt is submitted
+- server "gives" that data to "next" player (entry is pushed to sketchbook array of player next in the player list)
+- once this has happened for all players, the next round starts
+- server sends the .length-1 idx entry of each player's sketchbook to them (i.e., the entry they were "given" on the previous round)
+
+- player init worked well! Gameplay routing works, and players are successfully receiving their first random prompt
+- next is figuring out a game loop sort of construct. i.e., how to accomplish "when this state is reached in the game, do this"... feel like there are some distinct approaches, like setting up a while loop, or checking against state every time a client action is completed (e.g., in client submit fn, you increment submissionsCount and then check it against totalPlayers--if it's the final player to submit the "move on" code fires)

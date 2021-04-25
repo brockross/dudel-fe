@@ -9,7 +9,7 @@ import { SubmitButton } from "src/components/shared/SubmitButton";
 
 import { SocketContext } from "src/context/socket";
 import { GameCodeContext } from "src/context/game-code";
-import { fetchPlayerList } from "src/helpers";
+import { socketFetch } from "src/helpers";
 
 const GameSetup = () => {
   const socket: SocketIOClient.Socket = useContext(SocketContext);
@@ -23,7 +23,7 @@ const GameSetup = () => {
 
   useEffect(() => {
     // init
-    fetchPlayerList(socket).then(setPlayerList);
+    socketFetch(socket, "fetch-player-list").then(setPlayerList);
     // listeners
     socket.on("user-added", setPlayerList);
     socket.on("game-start", () => {

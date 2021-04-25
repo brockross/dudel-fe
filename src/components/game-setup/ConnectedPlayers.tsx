@@ -8,8 +8,8 @@ export const ConnectedPlayers: React.FC<ConnectedPlayersProps> = ({
 }) => {
   return (
     <Container>
-      {playerList.map((player) => (
-        <p>
+      {playerList.map((player, idx) => (
+        <p key={`${idx}-${player}`}>
           {player.username || "connected player"} {player.isFounder && `| VIP`}
         </p>
       ))}
