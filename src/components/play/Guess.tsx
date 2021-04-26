@@ -15,14 +15,21 @@ export const Guess: React.FC<GuessProps> = ({ doodleJSON, handleSubmit }) => {
   const [guess, setGuess] = useState("");
 
   useEffect(() => {
-    if (doodleJSON) {
-      const sketchpad = new Sketchpad({
-        element: "#readonly-sketch",
-        readOnly: true,
-        ...JSON.parse(doodleJSON),
-      });
-      sketchpad.animate(2);
+    if (!doodleJSON) {
+      return;
     }
+
+    const sketchpad = new Sketchpad({
+      element: "#readonly-sketch",
+      readOnly: true,
+      ...JSON.parse(doodleJSON),
+    });
+
+    sketchpad.animate(8);
+
+    return () => {
+      sketchpad.reset(); // when round ends and sketch ummounts, clear sketch data
+    };
   }, [doodleJSON]);
 
   const handleGuessText = (e: React.SyntheticEvent) => {

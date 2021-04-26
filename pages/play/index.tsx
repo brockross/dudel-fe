@@ -29,6 +29,8 @@ const Gameplay = () => {
 
     // listeners
     socket.on("next-round", (type: RoundType) => {
+      setRoundType(type);
+
       socketFetch(socket, "fetch-current-submission").then((data) => {
         console.log(
           `%c ***debug | index.tsx > fetch-current-submission`,
@@ -42,7 +44,6 @@ const Gameplay = () => {
           setDoodleJSON(data.doodleJSON);
         }
       });
-      setRoundType(type);
     });
   }, []);
 
