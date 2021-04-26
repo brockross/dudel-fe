@@ -14,18 +14,15 @@ export type GuessProps = {
 export const Guess: React.FC<GuessProps> = ({ doodleJSON, handleSubmit }) => {
   const [guess, setGuess] = useState("");
 
-  console.log(
-    `%c ***debug | Guess.tsx > Guess.tsx`,
-    "background-color: #12908E; color: #f7f7f7; border-radius: 5px; padding: 1em;"
-  );
-  console.log({ doodleJSON });
   useEffect(() => {
-    const sketchpad = new Sketchpad({
-      element: "#readonly-sketch",
-      readOnly: true,
-      ...JSON.parse(doodleJSON || JSON.stringify(sampleSketch)),
-    });
-    sketchpad.animate(2);
+    if (doodleJSON) {
+      const sketchpad = new Sketchpad({
+        element: "#readonly-sketch",
+        readOnly: true,
+        ...JSON.parse(doodleJSON),
+      });
+      sketchpad.animate(2);
+    }
   }, [doodleJSON]);
 
   const handleGuessText = (e: React.SyntheticEvent) => {

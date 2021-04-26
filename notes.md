@@ -100,3 +100,8 @@ sample player sketchbook: [{doodle: JSON, artist: username}, {guess: string, aut
 - player init worked well! Gameplay routing works, and players are successfully receiving their first random prompt
 - next is figuring out a game loop sort of construct. i.e., how to accomplish "when this state is reached in the game, do this"... feel like there are some distinct approaches, like setting up a while loop, or checking against state every time a client action is completed (e.g., in client submit fn, you increment submissionsCount and then check it against totalPlayers--if it's the final player to submit the "move on" code fires)
 - as I'm writing the actual "passing" logic I'm realizing there's an important distinction. Although in the irl game the sketchbook is passed to the "next" player, from a data standpoint, each data object is actually being given to a previous player--i.e., you're inserting data into the collection of a player whose index is lower than your own. This is a subtle but important distinction when wrapping my head around the mental model here. From a data standpoint, no sketchbook is ever "passed" to the next player. The relationship is almost reversed; instead of a player saying "here, higher-idx player, take this book;" a player is saying "here, lower-idx book, take this data"
+
+**checking in after weekend progress**
+
+- bulk of the game logic is working! hot damn I am so stoked about this. I think the server code is pretty concise and elegant, and augmenting/refining it will be easy because it's well-modularized
+- current client bug: sketchpad isn't replaced on subsequent rounds, it's added to/layered upon. So round 4 has the drawings from rounds 1 and 3 layered upon each other
