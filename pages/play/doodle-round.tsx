@@ -4,14 +4,15 @@ import styled from "styled-components";
 import { Doodle } from "src/components/play/Doodle";
 
 type DoodleRoundProps = {
-  promptText: string;
+  guessText: string;
+  handleSubmit: (data: any) => void;
 };
 
 const DoodleRound = (props: DoodleRoundProps) => {
-  const { promptText } = props;
+  const { guessText, handleSubmit } = props;
   return (
     <div>
-      <Doodle prompt={promptText} />
+      <Doodle guess={guessText} handleSubmit={handleSubmit} />
     </div>
   );
 };

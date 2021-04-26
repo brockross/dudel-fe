@@ -12,5 +12,5 @@ const Template: Story<DoodleProps> = (args) => <Doodle {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  prompt: "dog octopus",
+  guess: "dog octopus",
 };

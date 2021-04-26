@@ -3,11 +3,15 @@ import Sketchpad from "src/sketchpad";
 
 import { SubmitButton } from "src/components/shared/SubmitButton";
 
-export interface DoodleProps {
-  prompt: string;
-}
+export type DoodleProps = {
+  guess: string;
+  handleSubmit: (data: any) => void;
+};
 
-export const Doodle: React.FC<DoodleProps> = ({ prompt }): JSX.Element => {
+export const Doodle: React.FC<DoodleProps> = ({
+  guess,
+  handleSubmit,
+}): JSX.Element => {
   const [sketchpad, setSketchpad] = useState({});
 
   useEffect(() => {
@@ -25,23 +29,22 @@ export const Doodle: React.FC<DoodleProps> = ({ prompt }): JSX.Element => {
   const handleRedo = () => {
     sketchpad.redo();
   };
-  const handleSubmit = () => {
-    // TODO: socketry
+  const handleDoodleSubmit = () => {
     // const sketchData = sketchpad.toJSON();
-    console.log(sketchpad.toObject());
+    handleSubmit(sketchpad.toJSON());
   };
 
   return (
     <div>
       <h4>your doodle prompt is...</h4>
-      <h2>{prompt}</h2>
+      <h2>{guess}</h2>
       <canvas
         id={"sketch-canvas"}
         style={{ border: "2px solid teal", borderRadius: "50%" }}
       ></canvas>
       <button onClick={handleUndo}>undo</button>
       <button onClick={handleRedo}>redo</button>
-      <SubmitButton handleSubmit={handleSubmit}>submit!</SubmitButton>
+      <SubmitButton handleSubmit={handleDoodleSubmit}>submit!</SubmitButton>
     </div>
   );
 };
