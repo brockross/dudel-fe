@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import { ContentWrapper } from "src/components/shared/shared-styled";
 import DoodleRound from "./doodle-round";
@@ -16,9 +17,12 @@ enum RoundType {
 
 const Gameplay = () => {
   const socket: SocketIOClient.Socket = useContext(SocketContext);
+  const router = useRouter();
+
   const [roundType, setRoundType] = useState<RoundType>(RoundType.doodle);
   const [guessText, setGuessText] = useState("waiting for prompt...");
   const [doodleJSON, setDoodleJSON] = useState("");
+  const [hasSubmitted, setHasSubmitted] = useState<boolean>(false);
 
   useEffect(() => {
     // init
@@ -29,14 +33,10 @@ const Gameplay = () => {
 
     // listeners
     socket.on("next-round", (type: RoundType) => {
+      setHasSubmitted(false);
       setRoundType(type);
 
       socketFetch(socket, "fetch-current-submission").then((data) => {
-        console.log(
-          `%c ***debug | index.tsx > fetch-current-submission`,
-          "background-color: #12908E; color: #f7f7f7; border-radius: 5px; padding: 1em;"
-        );
-        console.log({ data });
         if (data.type === RoundType.guess) {
           setGuessText(data.guess);
         }
@@ -45,21 +45,32 @@ const Gameplay = () => {
         }
       });
     });
-  }, []);
 
-  window.__setRoundType = (str) => setRoundType(str); // hack to make it easier to swap states for dev
+    socket.on("start-post-game", () => {
+      router.push("/post-game");
+    });
+  }, []);
 
   const handleSubmit = (data) => {
     socket.emit("player-submit", data);
+    setHasSubmitted(true);
   };
 
   return (
     <ContentWrapper>
       {roundType === RoundType.doodle && (
-        <DoodleRound guessText={guessText} handleSubmit={handleSubmit} />
+        <DoodleRound
+          guessText={guessText}
+          handleSubmit={handleSubmit}
+          hasSubmitted={hasSubmitted}
+        />
       )}
       {roundType === RoundType.guess && (
-        <GuessRound doodleJSON={doodleJSON} handleSubmit={handleSubmit} />
+        <GuessRound
+          doodleJSON={doodleJSON}
+          handleSubmit={handleSubmit}
+          hasSubmitted={hasSubmitted}
+        />
       )}
     </ContentWrapper>
   );
