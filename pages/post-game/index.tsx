@@ -9,11 +9,14 @@ import sampleEndData from "src/components/post-game/sample-end-data.json";
 const PostGame = () => {
   const [displayedSlide, setDisplayedSlide] = useState(0);
 
-  setInterval(() => {
-    setDisplayedSlide(displayedSlide + 1);
-  }, 5000);
-
-  console.log(sampleEndData);
+  useEffect(() => {
+    if (displayedSlide === sampleEndData.length - 1) {
+      return;
+    }
+    setTimeout(() => {
+      setDisplayedSlide(displayedSlide + 1);
+    }, 5000);
+  }, [displayedSlide]);
 
   return (
     <div>
