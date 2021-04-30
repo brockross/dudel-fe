@@ -110,10 +110,18 @@ sample player sketchbook: [{doodle: JSON, artist: username}, {guess: string, aut
 
 - ~~create UI state for post-submission but before round ends. (e.g., "Your doodle has been submitted! Waiting on other players.") Particularly ensure the client can't submit again~~ done as a placeholder... kinda feel like doing all the game logic with minimal UI, then going through and doing a design revamp once the game all works
 - after final player submits and round ends, it'd be nice to have a little "Starting next round!" screen show for a few seconds, and maybe a basic animation or description of the "passing" going on (rather than just suddenly flashing to the next state)
-- detect end game state in server
+- ~~detect end game state in server~~
 - decide what to do at end of game. Definitely want to display all complete sketchbooks, in sequence, to all players. Could have it more like a controlled slideshow where everyone is shown the same thing at the same time on a timer. Could send all the data to all clients and give them all controls for navigating through sketchbook pages.
   - of those 2, I like the former better. It'd be more connective as a shared gameplay experience if you're all looking at the same thing at the same time (e.g. "Dale started with prompt 'dog helicopter'... and he drew this. ... Audrey guessed that was a 'puppy propeller' ... etc)
 - brainstorm and implement some kind of scoring (two kinds... one for correct guesses and their associated doodle, and one that's voting-based for favorite doodles/guesses)
   - so maybe during each sketchbook slideshow, A) the UI announces correct guesses, and the server tracks points, and B) after the end of the sketchbook, each client picks one doodle and one guess as their favorite from the book. After all books are shown, votes-per-username is tallied and the winner is announced along with the correct-guess/doodle winner
   - i'm picturing a slideshow, then a display of thumbnails of all pages at the end, with a ~10 second timer to pick your favorites before the next sketchbook is shown
 - continue to think about error/edge handling. One major thing is that I should build a way to easily associate a client back with their player data if they momentarily disconnect--currently that association is based on socket id, which changes on every new connection (e.g., store some id in localstorage and have the reconnecting client send it up so they can be re-associated with their player data)
+- need an always-showing player list, with accompanying "has submitted" info/icon
+- "Slideshow" at end
+  - each entry shows for a set period of time, in same order for all players
+  - each "slide" includes the doodle/guess, the artist/author name, and some expository text (e.g., "Then Audrey drew this!")
+  - similar timed expository text between sketchbooks as well
+  - need to grab some JSON of a final compiled game state so I don't have to play through an entire game every time I want to test this
+  - spent an hour+ building a B E S P O K E solution but ended up settling on useInterval for slideshow rendering logic. Whatever. The TimedWrapper will still be useful I think, and even if not, it was fun and educational
+  - so instead, I will build a slideshow component which advances through indices based on an "onBookFinished" handler, which is called within the Slide setInterval incrementer so that when a book reaches its final page, it calls onBookFinished which increments the active index of the compiledSketchbooks array
