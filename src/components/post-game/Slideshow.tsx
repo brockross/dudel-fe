@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import { Carousel } from "react-responsive-carousel";
+import SlideContent from "./SlideContent";
 
 type SlideshowProps = {
-  sketchbook: any[];
-  onComplete: () => void;
+  compiledSketchbooks: any[][];
 };
 
 const Slideshow = (props: SlideshowProps) => {
-  const { sketchbook, onComplete } = props;
-  // takes a single sketchbook array
-  // plays through the slides using setTimeout + increment
-  // passes single slide data down to slide components (rendered as entire mapped list, where only the current idx is visible in the window)
-  // when last slide is finished, calls a "done" handler which lets parent know to pass down the next sketchbook
-  const [displayedSlide, setDisplayedSlide] = useState<number>(0);
+  const { compiledSketchbooks } = props;
 
-  useEffect(() => {
-    if (displayedSlide < sketchbook.length) {
-      setTimeout(() => {
-        setDisplayedSlide(displayedSlide + 1);
-      }, 3000);
-    } else {
-      setDisplayedSlide(0);
-      onComplete();
-    }
-  }, [displayedSlide]);
+  const slideshowSettings = {
+    autoPlay: true,
+    interval: 3000,
+    // axis: "vertical",
+    showArrows: false,
+    showIndicators: false,
+    showThumbs: false,
+  };
 
   return (
-    <div>
-      post game time, babey -- -- {JSON.stringify(sketchbook[displayedSlide])}
-    </div>
+    <Carousel {...slideshowSettings}>
+      {compiledSketchbooks[1].map((pageData) => {
+        return <SlideContent pageData={pageData} />;
+      })}
+    </Carousel>
   );
-  return <div>slideshow placeholder</div>;
 };
 
 export default Slideshow;

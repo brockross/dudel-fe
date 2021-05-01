@@ -125,3 +125,8 @@ sample player sketchbook: [{doodle: JSON, artist: username}, {guess: string, aut
   - need to grab some JSON of a final compiled game state so I don't have to play through an entire game every time I want to test this
   - spent an hour+ building a B E S P O K E solution but ended up settling on useInterval for slideshow rendering logic. Whatever. The TimedWrapper will still be useful I think, and even if not, it was fun and educational
   - so instead, I will build a slideshow component which advances through indices based on an "onBookFinished" handler, which is called within the Slide setInterval incrementer so that when a book reaches its final page, it calls onBookFinished which increments the active index of the compiledSketchbooks array
+
+## musings
+
+- I'm noticing that I found the game logic problem-solving very engaging despite it being challenging. Working on the frontend UI logic like building a slideshow has been similarly challenging but not very engaging/interesting. It feels like a minimal payoff for a lot of effort. I imagine with enough practice and experience, UI stuff like this isn't so mentally taxing anymore so the cost/reward tradeoff skews much more favorably. Probably don't have enough data to reasonably make a judgment like "I enjoy this kind of coding more than that kind of coding," but it's something I'm noticing. Right now it's just annoying and I am not enjoying working on it
+- sweet, using react-responsive-carousel and it's a freaking dream. I'm sure there's a wealth of learning experiences to be had by building the carousel custom, but it's just onerous right now and I risk losing interest in the whole project--I'd rather handle this with a library and move on to more compelling stuff

@@ -11,20 +11,9 @@ import sampleEndData from "src/components/post-game/sample-end-data.json";
 const PostGame = () => {
   const [currSketchbookIdx, setCurrSketchbookIdx] = useState<number>(0);
 
-  const handleSketchbookFinish = () => {
-    console.log("sketchbook done!");
-    if (currSketchbookIdx === sampleEndData.length - 1) {
-      console.log("all sketchbooks done!");
-      return;
-    }
-    setCurrSketchbookIdx(currSketchbookIdx + 1);
-  };
   return (
     <ContentWrapper>
-      <Slideshow
-        sketchbook={sampleEndData[currSketchbookIdx]}
-        onComplete={handleSketchbookFinish}
-      />
+      <Slideshow compiledSketchbooks={sampleEndData} />
     </ContentWrapper>
   );
 };
