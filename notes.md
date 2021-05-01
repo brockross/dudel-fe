@@ -104,7 +104,7 @@ sample player sketchbook: [{doodle: JSON, artist: username}, {guess: string, aut
 **checking in after weekend progress**
 
 - bulk of the game logic is working! hot damn I am so stoked about this. I think the server code is pretty concise and elegant, and augmenting/refining it will be easy because it's well-modularized
-- current client bug: sketchpad isn't replaced on subsequent rounds, it's added to/layered upon. So round 4 has the drawings from rounds 1 and 3 layered upon each other
+- ~~current client bug: sketchpad isn't replaced on subsequent rounds, it's added to/layered upon. So round 4 has the drawings from rounds 1 and 3 layered upon each other~~
 
 **running todos**
 

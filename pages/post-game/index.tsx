@@ -2,27 +2,30 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { useTimer } from "react-timer-hook";
 
+import { ContentWrapper } from "src/components/shared/shared-styled";
 import TimedWrapper from "src/components/shared/TimedWrapper";
+import Slideshow from "src/components/post-game/Slideshow";
 
 import sampleEndData from "src/components/post-game/sample-end-data.json";
 
 const PostGame = () => {
-  const [displayedSlide, setDisplayedSlide] = useState(0);
+  const [currSketchbookIdx, setCurrSketchbookIdx] = useState<number>(0);
 
-  useEffect(() => {
-    if (displayedSlide === sampleEndData.length - 1) {
+  const handleSketchbookFinish = () => {
+    console.log("sketchbook done!");
+    if (currSketchbookIdx === sampleEndData.length - 1) {
+      console.log("all sketchbooks done!");
       return;
     }
-    setTimeout(() => {
-      setDisplayedSlide(displayedSlide + 1);
-    }, 5000);
-  }, [displayedSlide]);
-
+    setCurrSketchbookIdx(currSketchbookIdx + 1);
+  };
   return (
-    <div>
-      post game time, babey -- --{" "}
-      {JSON.stringify(sampleEndData[displayedSlide])}
-    </div>
+    <ContentWrapper>
+      <Slideshow
+        sketchbook={sampleEndData[currSketchbookIdx]}
+        onComplete={handleSketchbookFinish}
+      />
+    </ContentWrapper>
   );
 };
 
